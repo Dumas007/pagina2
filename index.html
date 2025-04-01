@@ -160,23 +160,25 @@
         }
 
         /* Hero section mejorado */
-     #intro {
+  #intro {
     height: 100vh;
-    min-height: 500px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     background: url('images/1.jpg') no-repeat center center;
-    background-size: cover;
+    background-size: contain; /* Cambiado de 'cover' a 'contain' para ver imagen completa */
     position: relative;
     color: white;
-    padding: 0 2rem;
+    padding: 0 1rem;
     overflow: hidden;
+    background-color: #111; /* Fondo para áreas no cubiertas por la imagen */
+   
 }
 
-/* Overlay moderno (más sutil que el rojo original) */
+ /* Overlay semi-transparente */
 #intro::before {
     content: '';
     position: absolute;
@@ -184,36 +186,28 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, 
-              rgba(0,0,0,0.2) 0%, 
-              rgba(0,0,0,0.5) 100%);
+    background: rgba(0,0,0,0.3); /* Overlay uniforme */
 }
 
-/* Ajustes móvil premium */
+/* Ajustes móviles */
 @media (max-width: 768px) {
     #intro {
-        background-attachment: scroll;
+        min-height: 300px;
         background-size: contain;
-        background-color: #111;
-        background-position: center top;
+        background-position: center center;
     }
 
-    /* Overlay móvil más claro */
+    /* Overlay más claro en móviles */
     #intro::before {
-        background: linear-gradient(to bottom, 
-                  rgba(0,0,0,0.1) 0%, 
-                  rgba(0,0,0,0.4) 100%);
+        background: rgba(0,0,0,0.2);
     }
 
-    /* Ajuste para pantallas muy pequeñas */
     @media (max-height: 600px) {
         #intro {
-            background-size: auto 100%;
-            min-height: 400px;
+            min-height: 250px;
         }
     }
 }
-
         #intro h1 {
             font-size: 4.5rem;
             margin-bottom: 1.5rem;
@@ -735,7 +729,7 @@
 </div><br>
   <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 3rem;">
     <a href="History.html" class="button large">Our Story</a>
-    <a href="AboutUS.html" class="button large">About Us</a>
+    <a href="AboutUs.html" class="button large">About Us</a>
 </div>
             </article>
 
