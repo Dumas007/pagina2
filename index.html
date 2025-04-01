@@ -652,15 +652,24 @@
 
         /* Efecto de máquina de escribir */
         .typewriter {
-            overflow: hidden;
-            border-right: 3px solid var(--secondary);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 2px;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret 0.75s step-end infinite;
+            overflow: visible; /* Permite que el texto se expanda */
+  white-space: pre-wrap; /* Mantiene los saltos de línea pero permite ajuste */
+  word-wrap: break-word; /* Rompe palabras largas si es necesario */
+  font-size: clamp(16px, 4vw, 24px); /* Tamaño responsive */
+  line-height: 1.4; /* Espaciado entre líneas */
+  padding: 10px; /* Espacio interno */
+  margin: 0 auto; /* Centrado */
+  max-width: 90%; /* Limita el ancho en móviles */
         }
+        /* Media query específica para móviles */
+@media (max-width: 480px) {
+  .typewriter {
+    white-space: normal; /* Permite que el texto fluya normalmente */
+    text-align: center; /* Centra el texto */
+    font-size: 18px; /* Tamaño ligeramente mayor en móviles */
+    padding: 8px 5px; /* Ajuste de padding */
+  }
+}
 
         @keyframes typing {
             from { width: 0 }
