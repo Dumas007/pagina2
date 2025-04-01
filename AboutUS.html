@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Flores Moving Company - History</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF0000; /* Rojo */
+            --secondary: #FFD700; /* Amarillo */
+            --accent: #000000; /* Negro */
+            --dark: #292F36;
+            --light: #F7FFF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Preloader animado */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .star {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
+            animation: pulse 1.5s infinite alternate, spin 4s linear infinite;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(0.8); }
+            to { transform: scale(1.2); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header simplificado */
+        #header {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.5rem 0;
+        }
+
+        /* Hero section mejorado */
+        #intro {
+            height: 80vh;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('images/1.jpg') no-repeat center center/cover;
+            position: relative;
+            color: white;
+            padding: 0 2rem;
+            overflow: hidden;
+        }
+
+
+        #intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+        }
+
+        #intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        #intro p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            max-width: 800px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--accent);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background-color: #ffc800;
+        }
+
+        /* Main content */
+        #main {
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+      /* History Timeline Styles */
+.history-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.history-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+}
+
+.history-header p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.history-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+}
+
+.history-timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.history-container {
+    padding: 10px 30px;
+    position: relative;
+    width: 50%;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.history-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.history-container::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -13px;
+    background-color: var(--light);
+    border: 4px solid var(--primary);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--light);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--light);
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--light);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--light) transparent transparent;
+}
+
+.right::after {
+    left: -13px;
+}
+
+.history-content {
+    padding: 20px;
+    background-color: white;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.history-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.history-content h3 {
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+/* Mejoras para las imágenes */
+.history-img {
+    width: 100%;
+    height: auto; /* Cambiado a auto para mantener proporciones */
+    max-height: 250px; /* Altura máxima para desktop */
+    object-fit: cover;
+    object-position: center; /* Asegura que el enfoque esté en el centro */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 3px solid var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+.history-img:hover {
+    transform: scale(1.02); /* Efecto de zoom sutil al pasar el mouse */
+}
+
+.history-quote {
+    font-style: italic;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, rgba(255,0,0,0.05), rgba(255,215,0,0.05));
+    border-left: 4px solid var(--secondary);
+    font-size: 1rem;
+    color: var(--dark);
+    border-radius: 0 8px 8px 0;
+}
+
+/* Responsive para imágenes */
+@media screen and (max-width: 768px) {
+    .history-timeline::after {
+        left: 31px;
+    }
+
+    .history-container {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 20px;
+    }
+
+    .history-container::before {
+        left: 60px;
+        border: medium solid var(--light);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--light) transparent transparent;
+    }
+
+    .left::after, .right::after {
+        left: 15px;
+    }
+
+    .right {
+        left: 0%;
+    }
+
+    /* Ajustes específicos para imágenes en móvil */
+    .history-img {
+        max-height: 180px; /* Altura reducida para móviles */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .history-img {
+        max-height: 150px; /* Altura aún más reducida para pantallas pequeñas */
+    }
+}
+        /* Testimonials Section */
+        .testimonials {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-card p {
+            font-weight: bold;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Timeline */
+        @media screen and (max-width: 768px) {
+            .history-timeline::after {
+                left: 31px;
+            }
+
+            .history-container {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 20px;
+            }
+
+            .history-container::before {
+                left: 60px;
+                border: medium solid var(--light);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--light) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+
+        /* Footer */
+        #footer {
+            background-color: var(--accent);
+            color: white;
+            padding: 3rem 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-about {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-logo i {
+            font-size: 1.8rem;
+        }
+
+        .footer-about p {
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-links a {
+            color: white;
+            background-color: var(--primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact i {
+            color: var(--secondary);
+            width: 18px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            #intro h1 {
+                font-size: 2.2rem;
+            }
+            
+            #intro p {
+                font-size: 1.1rem;
+            }
+            
+            .history-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #intro {
+                height: 40vh;
+                min-height: 250px;
+            }
+            
+            #intro h1 {
+                font-size: 2rem;
+            }
+            
+            #intro p {
+                font-size: 1rem;
+            }
+            
+            .history-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .history-content {
+                padding: 15px;
+            }
+            
+            .history-img {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #header {
+                padding: 0.8rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            #intro h1 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .footer-links {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div id="preloader">
+        <div class="star"></div>
+    </div>
+    
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+        <!-- Header -->
+        
+
+        <!-- Intro -->
+        <div id="intro">
+            <h1>About US</h1>
+            <p>The journey of Flores Moving Company</p>
+        </div>
+
+        <!-- Main -->
+        <div id="main">
+            <!-- History Header -->
+            <div class="history-header">
+                <h2>Yuri Flores (Founder)</h2>
+                <p>Hello, my name is Yuri Flores. I am 43 years old. I come from very humble origins. Where I come from is a place of many shortcomings. And if we add to that the fact that I grew up without parents since I was 7 years old, I assure you that these are the perfect ingredients to fill you with inspiration, goals, and dreams. For a dreamer like me, that was the perfect inspiration. The day I decided to leave my homeland for this beautiful country, the USA, I did so with the dream of being able to achieve my goals.</p><br>
+                  <p>When I arrived in the USA, I felt overwhelmed by seeing such a large and beautiful country. I started working cleaning floors and, little by little, I learned English, a beautiful language recognized worldwide. Little by little, I made my way along a narrow but sure path, with the clear objective of achieving something in my life.</p><br>
+                    <p>I found the key moment to develop my potential thanks to an old friend who motivated me to work with him, although he and I could not continue together on the same project. I must admit that he was a key piece in getting my own business going. Now I thank God for all his love and mercy because thanks to him, today I am what I once dreamed of. Although on many occasions I go and do the work myself, the satisfaction of what God and this country have granted me is priceless. THANK YOU, USA. Thank you for being what you are because, like me, you have helped millions of others fulfill their dreams. Now I understand why the USA is such a great and beautiful country because it does not discriminate when it comes to lending a hand. I love and respect this country. As a well-received and cared-for tenant, the least I can be is respectful of this beautiful country and the wonderful people originally from these lands. Thank you, USA, and especially to the city of Houston, TX and its surrounding areas. GOD BLESS THE USA AND ITS BEAUTIFUL PEOPLE.</p><br>
+            </div>
+            <center>
+<div class="image-container">
+<a href="#" class="image main" style="display: inline-block; max-width: 80%; margin: 0 auto;">
+    <img src="images/About.jpg" 
+         alt="Professional movers" 
+         style="width:100%; height:auto; max-height:60vh; object-fit:contain;" />
+</a>
+</div></center>
+</div><br>
+            <!-- History Timeline -->
+           
+
+                
+
+               
+                </div>
+
+                
+
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-truck-moving"></i>Flores Moving Co.
+                    </div>
+                    <p>Professional, reliable and affordable moving services in Houston and surrounding areas. Let us handle your move with care and efficiency.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="AboutUS.html">About Us</a></li>
+                        <li><a href="History.html">Our History</a></li>
+                       
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Residential Moving</a></li>
+                        <li><a href="#">Commercial Moving</a></li>
+                        <li><a href="#">Local Moving</a></li>
+                        <li><a href="#">Long Distance Moving</a></li>
+                        <li><a href="#">Packing Services</a></li>
+                        <li><a href="#">Storage Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 6120 Bellaire Blvd, Houston, TX 77081</p>
+                    <p><i class="fas fa-phone-alt"></i> (281) 536-9961</p>
+                    <p><i class="fas fa-envelope"></i> Floresmovingcompany@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 8am-6pm | Sat: 9am-2pm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Flores Moving Company. All Rights Reserved. | Designed by Erick Dumas</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Scroll animations
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.history-container, .testimonial-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial check
+        checkVisibility();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkVisibility);
+    </script>
+</body>
+</html>
