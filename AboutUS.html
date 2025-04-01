@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Flores Moving Company - History</title>
+    <title>Flores Moving Company</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,64 +71,166 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Header simplificado */
+        /* Header animado */
         #header {
-            background: var(--primary);
-            padding: 1rem 2rem;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            animation: colorShift 8s infinite alternate;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @keyframes colorShift {
+            0% { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+            50% { background: linear-gradient(135deg, var(--accent), var(--primary)); }
+            100% { background: linear-gradient(135deg, var(--primary), var(--accent)); }
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nav mejorado */
+        #nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .links a {
+            color: white;
             text-decoration: none;
-            display: inline-block;
-            padding: 0.5rem 0;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .links a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+
+        .icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .icons a:hover {
+            transform: translateY(-3px) scale(1.2);
+            color: var(--secondary);
         }
 
         /* Hero section mejorado */
+     #intro {
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('images/1.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+/* Overlay moderno (más sutil que el rojo original) */
+#intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+              rgba(0,0,0,0.2) 0%, 
+              rgba(0,0,0,0.5) 100%);
+}
+
+/* Ajustes móvil premium */
+@media (max-width: 768px) {
+    #intro {
+        background-attachment: scroll;
+        background-size: contain;
+        background-color: #111;
+        background-position: center top;
+    }
+
+    /* Overlay móvil más claro */
+    #intro::before {
+        background: linear-gradient(to bottom, 
+                  rgba(0,0,0,0.1) 0%, 
+                  rgba(0,0,0,0.4) 100%);
+    }
+
+    /* Ajuste para pantallas muy pequeñas */
+    @media (max-height: 600px) {
         #intro {
-            height: 80vh;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('images/1.jpg') no-repeat center center/cover;
-            position: relative;
-            color: white;
-            padding: 0 2rem;
-            overflow: hidden;
+            background-size: auto 100%;
+            min-height: 400px;
         }
-
-
-        #intro::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
-        }
+    }
+}
 
         #intro h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-
-        #intro p {
-            font-size: 1.2rem;
+            font-size: 4.5rem;
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease-out;
+        }
+
+        #intro p {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease-out 0.3s forwards;
+            opacity: 0;
             max-width: 800px;
         }
 
@@ -136,15 +238,17 @@
             display: inline-block;
             background-color: var(--secondary);
             color: var(--accent);
-            padding: 0.8rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             position: relative;
             z-index: 1;
+            animation: slideUp 1s ease-out 0.6s forwards;
+            opacity: 0;
             border: none;
             cursor: pointer;
         }
@@ -155,349 +259,239 @@
             background-color: #ffc800;
         }
 
+        .scrolly {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         /* Main content */
         #main {
-            padding: 3rem 1.5rem;
+            padding: 6rem 2rem 4rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-      /* History Timeline Styles */
-.history-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.history-header h2 {
-    font-size: 2.2rem;
-    color: var(--primary);
-    margin-bottom: 0.8rem;
-}
-
-.history-header p {
-    font-size: 1.1rem;
-    color: #555;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.history-timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto 3rem;
-    padding: 0 1rem;
-}
-
-.history-timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background: linear-gradient(to bottom, var(--primary), var(--secondary));
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-    border-radius: 10px;
-}
-
-.history-container {
-    padding: 10px 30px;
-    position: relative;
-    width: 50%;
-    margin-bottom: 2rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-}
-
-.history-container.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.history-container::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: -13px;
-    background-color: var(--light);
-    border: 4px solid var(--primary);
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.left {
-    left: 0;
-}
-
-.right {
-    left: 50%;
-}
-
-.left::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: 30px;
-    border: medium solid var(--light);
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent var(--light);
-}
-
-.right::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: 30px;
-    border: medium solid var(--light);
-    border-width: 10px 10px 10px 0;
-    border-color: transparent var(--light) transparent transparent;
-}
-
-.right::after {
-    left: -13px;
-}
-
-.history-content {
-    padding: 20px;
-    background-color: white;
-    position: relative;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.history-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.history-content h3 {
-    color: var(--primary);
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
-}
-
-/* Mejoras para las imágenes */
-.history-img {
-    width: 100%;
-    height: auto; /* Cambiado a auto para mantener proporciones */
-    max-height: 250px; /* Altura máxima para desktop */
-    object-fit: cover;
-    object-position: center; /* Asegura que el enfoque esté en el centro */
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    border: 3px solid var(--secondary);
-    transition: transform 0.3s ease;
-}
-
-.history-img:hover {
-    transform: scale(1.02); /* Efecto de zoom sutil al pasar el mouse */
-}
-
-.history-quote {
-    font-style: italic;
-    padding: 1rem;
-    margin: 1rem 0;
-    background: linear-gradient(135deg, rgba(255,0,0,0.05), rgba(255,215,0,0.05));
-    border-left: 4px solid var(--secondary);
-    font-size: 1rem;
-    color: var(--dark);
-    border-radius: 0 8px 8px 0;
-}
-
-/* Responsive para imágenes */
-@media screen and (max-width: 768px) {
-    .history-timeline::after {
-        left: 31px;
-    }
-
-    .history-container {
-        width: 100%;
-        padding-left: 60px;
-        padding-right: 20px;
-    }
-
-    .history-container::before {
-        left: 60px;
-        border: medium solid var(--light);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--light) transparent transparent;
-    }
-
-    .left::after, .right::after {
-        left: 15px;
-    }
-
-    .right {
-        left: 0%;
-    }
-
-    /* Ajustes específicos para imágenes en móvil */
-    .history-img {
-        max-height: 180px; /* Altura reducida para móviles */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .history-img {
-        max-height: 150px; /* Altura aún más reducida para pantallas pequeñas */
-    }
-}
-        /* Testimonials Section */
-        .testimonials {
-            margin: 3rem 0;
+        /* Featured Post */
+        .post.featured {
             text-align: center;
+            margin-bottom: 5rem;
         }
 
-        .testimonials h2 {
-            font-size: 2rem;
+        .post.featured header.major {
+            margin-bottom: 3rem;
+        }
+
+        .post.featured h2 {
+            font-size: 2.8rem;
             color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .post.featured h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 1.5rem auto;
+            border-radius: 5px;
+        }
+
+        .post.featured p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
             margin-bottom: 2rem;
         }
 
-        .testimonial-grid {
+      .image.main {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 80vh; /* Limita la altura máxima */
+    object-fit: contain; /* Muestra la imagen completa */
+    object-position: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: #f5f5f5; /* Fondo para posibles áreas vacías */
+}
+
+/* Contenedor padre para mantener el aspect ratio */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+/* Ajustes específicos para móviles */
+@media (max-width: 768px) {
+    .image.main {
+        width: auto;
+        max-width: 100%;
+        max-height: 60vh;
+    }
+    
+    .image-container {
+        max-height: 60vh;
+    }
+}
+        .image.main:hover {
+            transform: scale(1.02);
+        }
+
+        /* Posts grid */
+        .posts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
         }
 
-        .testimonial-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .posts article {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s;
+            transform: translateY(20px);
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
         }
 
-        .testimonial-card.visible {
-            opacity: 1;
+        .posts article.visible {
             transform: translateY(0);
+            opacity: 1;
         }
 
-        .testimonial-card:hover {
+        .posts article:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
-        .testimonial-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary);
-            margin-bottom: 1rem;
+        .posts article header {
+            padding: 2rem 2rem 1rem;
         }
 
-        .testimonial-card blockquote {
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: #555;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-
-        .testimonial-card p {
-            font-weight: bold;
+        .posts article h2 {
+            font-size: 1.8rem;
             color: var(--dark);
-            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
-        /* Responsive Timeline */
-        @media screen and (max-width: 768px) {
-            .history-timeline::after {
-                left: 31px;
-            }
+        .video.fit, .image.fit {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
 
-            .history-container {
-                width: 100%;
-                padding-left: 60px;
-                padding-right: 20px;
-            }
+        .posts article ul {
+            padding: 0 2rem 2rem;
+            list-style-type: none;
+        }
 
-            .history-container::before {
-                left: 60px;
-                border: medium solid var(--light);
-                border-width: 10px 10px 10px 0;
-                border-color: transparent var(--light) transparent transparent;
-            }
+        .posts article ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.5;
+        }
 
-            .left::after, .right::after {
-                left: 15px;
-            }
+        .posts article ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
 
-            .right {
-                left: 0%;
-            }
+        .posts article p {
+            padding: 0 2rem 1.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .posts article .actions {
+            padding: 0 2rem 2rem;
         }
 
         /* Footer */
         #footer {
             background-color: var(--accent);
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 4rem 2rem;
         }
 
         .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .footer-about {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .footer-logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             color: var(--secondary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .footer-logo i {
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
 
         .footer-about p {
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .social-links {
             display: flex;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .social-links a {
             color: white;
             background-color: var(--primary);
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            font-size: 0.9rem;
         }
 
         .social-links a:hover {
@@ -507,11 +501,11 @@
         }
 
         .footer-links h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             color: var(--secondary);
             position: relative;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .footer-links h3::after {
@@ -519,7 +513,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 40px;
+            width: 50px;
             height: 3px;
             background-color: var(--primary);
         }
@@ -529,7 +523,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-links a {
@@ -537,7 +531,6 @@
             text-decoration: none;
             transition: all 0.3s;
             display: inline-block;
-            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -546,34 +539,88 @@
         }
 
         .footer-contact p {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-            line-height: 1.5;
-            font-size: 0.9rem;
+            gap: 10px;
+            line-height: 1.6;
         }
 
         .footer-contact i {
             color: var(--secondary);
-            width: 18px;
+            width: 20px;
             text-align: center;
         }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .footer-bottom p {
             color: rgba(255,255,255,0.7);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
-        /* Responsive adjustments */
+        /* Responsive */
         @media (max-width: 992px) {
+            #intro h1 {
+                font-size: 3.5rem;
+            }
+            
+            #intro p {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            #nav {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 1rem;
+            }
+            
+            .links {
+                display: none;
+            }
+            
+            .links.active {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            #intro h1 {
+                font-size: 2.8rem;
+            }
+            
+            #intro p {
+                font-size: 1.3rem;
+            }
+            
+            .post.featured h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
             #intro h1 {
                 font-size: 2.2rem;
             }
@@ -582,59 +629,56 @@
                 font-size: 1.1rem;
             }
             
-            .history-header h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #intro {
-                height: 40vh;
-                min-height: 250px;
-            }
-            
-            #intro h1 {
-                font-size: 2rem;
-            }
-            
-            #intro p {
-                font-size: 1rem;
-            }
-            
-            .history-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .history-content {
-                padding: 15px;
-            }
-            
-            .history-img {
-                height: 150px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            #header {
-                padding: 0.8rem 1rem;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            #intro h1 {
-                font-size: 1.8rem;
+            .posts {
+                grid-template-columns: 1fr;
             }
             
             .footer-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
-            
-            .footer-links {
-                margin-bottom: 1rem;
-            }
+        }
+
+        /* Animaciones al hacer scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efecto de máquina de escribir */
+        .typewriter {
+            overflow: visible; /* Permite que el texto se expanda */
+  white-space: pre-wrap; /* Mantiene los saltos de línea pero permite ajuste */
+  word-wrap: break-word; /* Rompe palabras largas si es necesario */
+  font-size: clamp(16px, 4vw, 24px); /* Tamaño responsive */
+  line-height: 1.4; /* Espaciado entre líneas */
+  padding: 10px; /* Espacio interno */
+  margin: 0 auto; /* Centrado */
+  max-width: 90%; /* Limita el ancho en móviles */
+        }
+        /* Media query específica para móviles */
+@media (max-width: 480px) {
+  .typewriter {
+    white-space: normal; /* Permite que el texto fluya normalmente */
+    text-align: center; /* Centra el texto */
+    font-size: 18px; /* Tamaño ligeramente mayor en móviles */
+    padding: 8px 5px; /* Ajuste de padding */
+  }
+}
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary); }
         }
     </style>
 </head>
@@ -645,48 +689,120 @@
     
     <!-- Wrapper -->
     <div id="wrapper" class="fade-in">
-        <!-- Header -->
-        
-
         <!-- Intro -->
         <div id="intro">
-            <h1>About US</h1>
-            <p>The journey of Flores Moving Company</p>
+            <h1>Flores Moving Company</h1>
+            <p class="typewriter">Moving? Let us make it easy, fast, and stress-free.</p>
+            <a href="#main" class="button open-modal-btn">Get a Free Quote</a>
+       
+            <a href="#main" class="icon solid solo fa-arrow-down scrolly"></a>
         </div>
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Flores Moving Company</a>
+            <nav id="nav">
+                <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+                <ul class="links active">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="AboutUS.html">About Us</a></li>
+                    <li><a href="History.html">History</a></li>
+                    <li> <a href="#main" class="button open-modal-btn">Get a Free Quote</a></li>
+                   
+                </ul>
+                <ul class="icons">
+                    <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="https://www.google.com/search?q=your+business+name&hl=en#lrd=0x1234567890:0xabcdef123456789,1" target="_blank" class="icon brands fa-google"><span class="label">Google Reviews</span></a></li>
+                </ul>
+            </nav>
+        </header>
 
         <!-- Main -->
         <div id="main">
-            <!-- History Header -->
-            <div class="history-header">
-                <h2>Yuri Flores (Founder)</h2>
-                <p>Hello, my name is Yuri Flores. I am 43 years old. I come from very humble origins. Where I come from is a place of many shortcomings. And if we add to that the fact that I grew up without parents since I was 7 years old, I assure you that these are the perfect ingredients to fill you with inspiration, goals, and dreams. For a dreamer like me, that was the perfect inspiration. The day I decided to leave my homeland for this beautiful country, the USA, I did so with the dream of being able to achieve my goals.</p><br>
-                  <p>When I arrived in the USA, I felt overwhelmed by seeing such a large and beautiful country. I started working cleaning floors and, little by little, I learned English, a beautiful language recognized worldwide. Little by little, I made my way along a narrow but sure path, with the clear objective of achieving something in my life.</p><br>
-                    <p>I found the key moment to develop my potential thanks to an old friend who motivated me to work with him, although he and I could not continue together on the same project. I must admit that he was a key piece in getting my own business going. Now I thank God for all his love and mercy because thanks to him, today I am what I once dreamed of. Although on many occasions I go and do the work myself, the satisfaction of what God and this country have granted me is priceless. THANK YOU, USA. Thank you for being what you are because, like me, you have helped millions of others fulfill their dreams. Now I understand why the USA is such a great and beautiful country because it does not discriminate when it comes to lending a hand. I love and respect this country. As a well-received and cared-for tenant, the least I can be is respectful of this beautiful country and the wonderful people originally from these lands. Thank you, USA, and especially to the city of Houston, TX and its surrounding areas. GOD BLESS THE USA AND ITS BEAUTIFUL PEOPLE.</p><br>
-            </div>
-            <center>
-<div class="image-container">
-<a href="#" class="image main" style="display: inline-block; max-width: 80%; margin: 0 auto;">
-    <img src="images/About.jpg" 
-         alt="Professional movers" 
-         style="width:100%; height:auto; max-height:60vh; object-fit:contain;" />
-</a>
-</div></center>
+            <!-- Featured Post -->
+            <article class="post featured">
+                <header class="major">
+                    <h2>Your Trusted & Professional Moving Company</h2>
+                    <p>At Flores Moving Company, we know that moving is more than just boxes and trucks — it's a fresh start. That's why we offer residential and commercial moving services, both local and long-distance, handled by a friendly, on-time, and experienced team.</p>
+                </header>
+               <div class="image-container">
+    <a href="#" class="image main">
+        <img src="images/7.jpg" 
+             alt="Professional movers" 
+             style="width:100%; height:auto; max-height:inherit; object-fit:contain;" />
+    </a>
 </div><br>
-            <!-- History Timeline -->
-           
+  <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 3rem;">
+    <a href="History.html" class="button large">Our Story</a>
+    <a href="AboutUs.html" class="button large">About Us</a>
+</div>
+            </article>
 
-                
-
-               
-                </div>
-
-                
-
-                </div>
-            </div>
-
-            <!-- Testimonials Section -->
-            
+            <!-- Posts -->
+            <section class="posts">
+                <article class="animate-on-scroll">
+                    <header>
+                        <h2>🏆 Why Choose Us?</h2>
+                    </header>
+                  <video src="images/15.mp4" autoplay muted loop playsinline class="video fit"></video><br>
+                    <ul>
+                        <li>🚚 Fast, safe, and efficient moves</li>
+                        <li>💰 Upfront pricing – no hidden fees</li>
+                        <li>📦 Professional packing and furniture protection</li>
+                        <li>📞 24/7 customer support</li>
+                        <li>🛡️ Licensed and insured</li>
+                    </ul>
+                    <ul class="actions special">
+                    <li><a href="#" class="button open-modal-btn" >Contact Us</a></li>
+                    </ul>
+                </article>
+                <article class="animate-on-scroll">
+                    <header>
+                        <h2>📦 Our Moving Services</h2>
+                    </header>
+                    <video src="images/10.mp4" autoplay muted loop playsinline class="video fit"></video><br>
+                    <ul>
+                        <li>📍 Local & long-distance moves</li>
+                        <li>🏠 Residential & commercial moving</li>
+                        <li>📦 Packing & unpacking</li>
+                        <li>📦 Short & long-term storage solutions</li>
+                        <li>📦 Moving supplies and boxes</li>
+                    </ul>
+                    <ul class="actions special">
+                        <li><a href="#" class="button open-modal-btn" >Contact Us</a></li>
+                    </ul>
+                </article>
+                <article class="animate-on-scroll">
+                    <header>
+                        <h2>🔧 Our 4-Step Moving Process</h2>
+                    </header>
+                     <img src="images/8.jpg" alt="Moving tips" class="image fit"><br>
+                    <p><strong>Step 1: Request a Free Quote</strong> Tell us about your move - where, when, and what - and we'll provide a no-obligation estimate.</p>
+                    <p><strong>Step 2: Plan Your Move</strong> We'll work with you to schedule the move, customize services, and answer all your questions.</p>
+                    <p><strong>Step 3: Moving Day</strong> Our professional crew arrives on time, ready to pack, load, and transport your belongings with care.</p>
+                    <p><strong>Step 4: Settle In</strong> We'll unload, unpack (if requested), and make sure everything is exactly where it needs to be.</p>
+                  <ul class="actions special" style="list-style: none; padding-left: 0;">
+    <li><a href="#" class="button open-modal-btn" >Contact Us</a></li>
+</ul>
+                </article>
+                <article class="animate-on-scroll">
+                    <header>
+                        <h2>🧭 Moving Tips & Resources</h2>
+                    </header>
+                     <img src="images/6.jpg" alt="Moving tips" class="image fit"><br>
+                    <ul>
+                        <li>📋 Moving Checklist – Stay organized with our week-by-week planning guide</li>
+                        <li>📦 Packing Tips – Learn how to pack fragile items and label boxes</li>
+                        <li>🕑 Timing Your Move – Discover the best days and times to move</li>
+                        <li>💡 Utility & Address Change Guide – Don't forget important services!</li>
+                        <li>❄️ Seasonal Moving Advice – Tips for every season</li>
+                    </ul>
+                    <ul class="actions special">
+                        <li><a href="#" class="button open-modal-btn" >Contact Us</a></li>
+                    </ul>
+                </article>
+            </section>
         </div>
 
         <!-- Footer -->
@@ -710,8 +826,9 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="AboutUS.html">About Us</a></li>
                         <li><a href="History.html">Our History</a></li>
-                       
+                        <li><a href="Services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                  
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -739,6 +856,208 @@
         </footer>
     </div>
 
+    <!-- Modal HTML (tu versión modificada) -->
+<div id="quoteModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Request a Free Quote</h2>
+        <form id="quoteForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="MovingFrom">Moving out From</label>
+                <textarea id="MovingFrom" name="MovingFrom" class="form-input textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Movingto">Moving in to</label>
+                <textarea id="Movingto" name="Movingto" class="form-input textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="bedrooms">How many bedrooms</label>
+                <input type="number" id="bedrooms" name="bedrooms" class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="move-date">Approximate Move Date</label>
+                <input type="date" id="move-date" name="move-date" required class="form-input">
+            </div>
+            <div class="form-group">
+                <label for="details">Special Instructions</label>
+                <textarea id="details" name="details" class="form-input textarea"></textarea>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Get Your Free Quote</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border: none;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close-modal {
+    color: #aaa;
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+/* Estilos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-input, .textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus, .textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 15% auto;
+        width: 95%;
+    }
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Elementos
+  const modal = document.getElementById('quoteModal');
+  const openBtns = document.querySelectorAll('.open-modal-btn');
+  const closeBtn = document.querySelector('.close-modal');
+  const body = document.body;
+  
+  // Abrir modal para todos los botones
+  openBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+      body.style.overflow = 'hidden';
+    });
+  });
+  
+  // Cerrar modal
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+    body.style.overflow = 'auto';
+  });
+  
+  // Cerrar al hacer clic fuera
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+      body.style.overflow = 'auto';
+    }
+  });
+  
+  // Manejar envío del formulario
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for your request! We will contact you soon.');
+    modal.style.display = 'none';
+    body.style.overflow = 'auto';
+    this.reset();
+  });
+});
+</script>
     <script>
         // Preloader
         window.addEventListener('load', function() {
@@ -751,25 +1070,65 @@
             }, 1000);
         });
 
-        // Scroll animations
-        function checkVisibility() {
-            const elements = document.querySelectorAll('.history-container, .testimonial-card');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
+        // Menú hamburguesa para móviles
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Animaciones al hacer scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scrolling para enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (this.classList.contains('scrolly')) {
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Efecto máquina de escribir
+        function typeWriter(element) {
+            const text = element.textContent;
+            element.textContent = '';
+            
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typing, 50);
+                }
+            }
+            
+            typing();
         }
 
-        // Initial check
-        checkVisibility();
-        
-        // Check on scroll
-        window.addEventListener('scroll', checkVisibility);
+        const typewriterElements = document.querySelectorAll('.typewriter');
+        typewriterElements.forEach(el => {
+            typeWriter(el);
+        });
+
     </script>
+   
 </body>
 </html>
